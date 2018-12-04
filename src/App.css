@@ -1,0 +1,21 @@
+body{
+    text-align: center;
+}
+.App{
+    border: 1px solid black;
+}
+.App h1{
+    border: 1px solid red;
+}
+.App input{
+    border: 1px solid red;
+}
+.App ol{
+    border: 1px solid green;
+    margin: 10px;;
+}
+.App li{
+    border: 1px solid red;
+    margin: 10px;
+    margin-left: -32px;
+}
