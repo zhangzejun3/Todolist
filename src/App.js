@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import './App.css'
+import 'normalize.css'
+import './reset.css'
 import TodoInput from './TodoInput'
 import TodoItem from './TodoItem'
 
@@ -10,8 +12,7 @@ class App extends Component {
             newTodo: 'test',
             todoList: [
                 { id: 1, title: '第1个待办' },
-                { id: 2, title: '第2个待办' },
-                { id: 3, title: '第3个待办' }
+                { id: 2, title: '第2个待办' }
             ]
         }
     }
@@ -21,7 +22,7 @@ class App extends Component {
         })
         return (
             <div className='App'>
-                <h1>我的待办</h1>
+                <h1>Todolist</h1>
                 <div className="inputWrapper">
                 <TodoInput content={this.state.newTodo}/>
                 </div>

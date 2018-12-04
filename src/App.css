@@ -2,20 +2,15 @@ body{
     text-align: center;
 }
 .App{
-    /* border: 1px solid black; */
+    border: 1px solid #ddd;
+    color: #333;
+    background: #fff;
+    margin: 2em;
+    padding: 0 1em;
+    min-height: 20em;
+    min-width: 32em;
+    box-shadow: 0 0 1em hsla(0,0%,0%,0.15);
 }
-.App h1{
-    /* border: 1px solid red; */
-}
-.App input{
-    /* border: 1px solid red; */
-}
-.App ol{
-    /* border: 1px solid green; */
-    margin: 10px;;
-}
-.App li{
-    /* border: 1px solid red; */
+.App ol li{
     margin: 10px;
-    margin-left: -32px;
 }
