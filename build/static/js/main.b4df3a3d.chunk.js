@@ -1,2 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[0],{3:function(e,n,t){e.exports=t(4)},4:function(e,n,t){"use strict";t.r(n);var o=t(0),l=t.n(o),a=t(2),r=t.n(a);t(9);setInterval(function(){var e=l.a.createElement("div",null,l.a.createElement("h1",null,"Hello, world!"),l.a.createElement("h2",null,"It is ",(new Date).toLocaleTimeString(),"."));r.a.render(e,document.getElementById("root"))},1e3)},9:function(e,n,t){}},[[3,2,1]]]);
-//# sourceMappingURL=main.b4df3a3d.chunk.js.map
