@@ -14,8 +14,8 @@
     color: rgba(175, 47, 47, 0.15);
 }
 .inputWrapper input{
-    margin-left: 20%;
-    margin-right: 20%;
+    margin-left: 10%;
+    margin-right: 10%;
     padding: 10px;
     border: 1px solid white;
     box-shadow: #ddd;
@@ -27,8 +27,8 @@
     color: #ddd;
 }
 .itemWrapper{
-    width: 60%;
-    margin: 0 auto;
+    width: 80%;
+    margin: 10px auto;
 }
 .itemWrapper::after{
     content: '';
@@ -38,10 +38,13 @@
 .itemWrapper input{
     width: 14px;
     height: 14px;
-    margin: 4px;
+    margin-left: 12px;
+    margin-right: 12px;
+    margin-top: 5px;
     float: left;
 }
 .itemWrapper span{
+    width: 60%;
     line-height:22px;
     float: left;
     color: #666;
