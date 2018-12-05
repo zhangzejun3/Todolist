@@ -1,6 +1,4 @@
-body{
-    text-align: center;
-}
+
 .App{
     border: 1px solid #ddd;
     color: #333;
@@ -11,6 +9,49 @@ body{
     min-width: 32em;
     box-shadow: 0 0 1em hsla(0,0%,0%,0.15);
 }
-.App ol li{
-    margin: 10px;
+.App h1{
+    text-align: center;
+    color: rgba(175, 47, 47, 0.15);
+}
+.inputWrapper input{
+    margin-left: 20%;
+    margin-right: 20%;
+    padding: 10px;
+    border: 1px solid white;
+    box-shadow: #ddd;
+}
+.App input:focus{
+    outline: none;
+}
+.App input::placeholder{
+    color: #ddd;
+}
+.itemWrapper{
+    width: 60%;
+    margin: 0 auto;
+}
+.itemWrapper::after{
+    content: '';
+    display: block;
+    clear: both;
+}
+.itemWrapper input{
+    width: 14px;
+    height: 14px;
+    margin: 4px;
+    float: left;
+}
+.itemWrapper span{
+    line-height:22px;
+    float: left;
+    color: #666;
+}
+.itemWrapper button{
+    float: right;
+    background:#fff;
+    color: #ddd;
+    border: 0;
+}
+.itemWrapper button:focus{
+    outline: none;
 }
