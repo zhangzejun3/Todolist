@@ -48,6 +48,7 @@
     line-height:22px;
     float: left;
     color: #666;
+    word-break: break-all;
 }
 .itemWrapper button{
     float: right;

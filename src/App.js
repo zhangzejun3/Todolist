@@ -4,18 +4,19 @@ import 'normalize.css'
 import './reset.css'
 import TodoInput from './TodoInput'
 import TodoItem from './TodoItem'
-import * as localStore from './localStore'
+import UserDialog from './UserDialog'
+import {getCurrentUser} from './leanCloud';
 
 class App extends Component {
     constructor() {
         super()
         this.state = {
+            user:getCurrentUser||{},
             newTodo: '',
-            todoList: localStore.load('todoList')||[]
+            todoList: []
         }
     }
     componentDidUpdate(){
-        localStore.save('todoList', this.state.todoList)
     }
     render() {
         let todos = this.state.todoList
@@ -27,7 +28,7 @@ class App extends Component {
         })
         return (
             <div className='App'>
-                <h1>Todos</h1>
+                <h1>{this.state.user.username||''}Todos</h1>
                 <div className="inputWrapper">
                 <TodoInput content={this.state.newTodo}
                 onSubmit={this.addTodo.bind(this)}
@@ -36,8 +37,24 @@ class App extends Component {
                 <ol>
                     {todos}
                 </ol>
+                {this.state.user.id?null:<UserDialog 
+                onSignUp={this.onSignUp.bind(this)}
+                onSignIn={this.onSignIn.bind(this)}/>}
             </div>
         )
+    }
+    onSignUp(user){
+        // this.state.user = user
+        // this.setState(this.state)
+        //直接修改会报错
+        let stateCopy = JSON.parse(JSON.stringify(this.state))
+        stateCopy.user = user
+        this.setState(stateCopy)
+    }
+    onSignIn(user){
+        let stateCopy = JSON.parse(JSON.stringify(this.state))
+        stateCopy.user = user
+        this.setState(stateCopy)
     }
     delete(event,todo){
         todo.deleted = true
