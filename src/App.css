@@ -13,6 +13,21 @@
     text-align: center;
     color: rgba(175, 47, 47, 0.15);
 }
+.App h1::after{
+    clear: both;
+    display: block;
+    content: '';
+}
+.App h1 button{
+    font-size: 16px;
+    float: right;
+    color: #ddd;
+    background: #fff;
+    border: 1px solid white;
+}
+.App h1 button:focus{
+    outline: none;
+}
 .inputWrapper input{
     margin-left: 10%;
     margin-right: 10%;
