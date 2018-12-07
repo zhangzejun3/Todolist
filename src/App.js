@@ -5,7 +5,7 @@ import './reset.css'
 import TodoInput from './TodoInput'
 import TodoItem from './TodoItem'
 import UserDialog from './UserDialog'
-import {getCurrentUser} from './leanCloud';
+import {getCurrentUser,signOut} from './leanCloud';
 
 class App extends Component {
     constructor() {
@@ -15,8 +15,6 @@ class App extends Component {
             newTodo: '',
             todoList: []
         }
-    }
-    componentDidUpdate(){
     }
     render() {
         let todos = this.state.todoList
@@ -28,7 +26,9 @@ class App extends Component {
         })
         return (
             <div className='App'>
-                <h1>{this.state.user.username||''}Todos</h1>
+                <h1>{this.state.user.username||'我'}的Todos
+                {this.state.user.id?
+                <button onClick={this.onSignOut.bind(this)}>登出</button>:null}</h1>
                 <div className="inputWrapper">
                 <TodoInput content={this.state.newTodo}
                 onSubmit={this.addTodo.bind(this)}
@@ -38,12 +38,13 @@ class App extends Component {
                     {todos}
                 </ol>
                 {this.state.user.id?null:<UserDialog 
-                onSignUp={this.onSignUp.bind(this)}
-                onSignIn={this.onSignIn.bind(this)}/>}
+                onSignUp={this.onSignUpOrSignIn.bind(this)}
+                onSignIn={this.onSignUpOrSignIn.bind(this)}/>}
             </div>
         )
     }
-    onSignUp(user){
+
+    onSignUpOrSignIn(user){
         // this.state.user = user
         // this.setState(this.state)
         //直接修改会报错
@@ -51,9 +52,10 @@ class App extends Component {
         stateCopy.user = user
         this.setState(stateCopy)
     }
-    onSignIn(user){
-        let stateCopy = JSON.parse(JSON.stringify(this.state))
-        stateCopy.user = user
+    onSignOut(){
+        signOut()
+        let stateCopy =JSON.parse(JSON.stringify(this.state))
+        stateCopy.user = {}
         this.setState(stateCopy)
     }
     delete(event,todo){
@@ -85,6 +87,7 @@ class App extends Component {
         })
     }
 }
+
 let id = 0
 function idMaker(){
     id += 1
