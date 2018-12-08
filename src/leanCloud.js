@@ -13,9 +13,9 @@ export function signUp(username,password,successFn,errorFn){
   // 新建 AVUser 对象实例
   var user = new AV.User();
   // 设置用户名
-  user.setUsername(username);
+  user.setUsername(username||'');
   // 设置密码
-  user.setPassword(password);
+  user.setPassword(password||'');
   // 设置邮箱
   // user.setEmail('tom@leancloud.cn');
   user.signUp().then(function (loggedInUser) {
