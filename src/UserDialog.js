@@ -52,6 +52,7 @@ class UserDialog extends Component {
             this.props.onSignUp.call(null,user)
         }
         let error = (error)=>{
+            console.log(error)
             switch(error.code){
                 case 202:
                 alert('用户名已被占用')
@@ -83,13 +84,11 @@ class UserDialog extends Component {
     render() {
         let signUpForm = (<form className='signUp' onSubmit={this.signUp.bind(this)}>
             <div className="row">
-                <label>用户名</label>
-                <input type="text" value={this.state.formData.username}
+                <input placeholder='用户名' type="text" value={this.state.formData.username}
                 onChange={this.changeFormData.bind(this,'username')}/>
             </div>
             <div className="row">
-                <label>密码</label>
-                <input type="password" value={this.state.formData.password}
+                <input  placeholder='密码' type="password" value={this.state.formData.password}
                 onChange={this.changeFormData.bind(this,'password')}/>
             </div>
             <div className="row actions">
@@ -99,13 +98,11 @@ class UserDialog extends Component {
 
         let signInForm = (<form className='signIn' onSubmit={this.signIn.bind(this)}>
             <div className="row">
-                <label>用户名</label>
-                <input type="text" value={this.state.formData.username}
+                <input placeholder='用户名' type="text" value={this.state.formData.username}
                 onChange={this.changeFormData.bind(this,'username')}/>
             </div>
             <div className="row">
-                <label>密码</label>
-                <input type="password" value={this.state.formData.password}
+                <input placeholder='密码' type="password" value={this.state.formData.password}
                 onChange={this.changeFormData.bind(this,'password')}/>
             </div>
             <div className="row actions">
@@ -116,17 +113,16 @@ class UserDialog extends Component {
         return (
             <div className="UserDialogWrapper">
                 <div className="UserDialog">
-                    <nav>
-                        <label><input type="radio" value="signUp"
-                            checked={this.state.selected === 'signUp'}  
-                            onChange={this.toggle.bind(this)}/>注册</label>
-                        <label><input type="radio" value="signIn"
-                            checked={this.state.selected === 'signIn'} 
-                            onChange={this.toggle.bind(this)}/>登录</label>
-                    </nav>
+                    <h1>Welcome</h1>
                     <div className="formWrapper">
                         {this.state.selected === 'signIn' ? signInForm : signUpForm}
                     </div>
+                    <footer className='clearfix'>
+                        <button value='signUp'
+                        onClick={this.toggle.bind(this)}>注册</button>
+                        <button value='signIn'
+                        onClick={this.toggle.bind(this)}>登录</button>
+                    </footer>
                 </div>
             </div>
         )

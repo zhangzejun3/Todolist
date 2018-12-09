@@ -1,6 +1,5 @@
 .UserDialogWrapper{
-    /* background:#eee;
-     */
+    background:#eee;
     position: fixed;
     top: 0;
     left: 0;
@@ -30,10 +29,53 @@
 .UserDialog  form >.row{
     padding: .3em 0;
 }
-.UserDialog  form >.row > label:first-child{
-    width: 4em;
-    display: inline-block;
-}
 .UserDialog  form >.row.actions{
-    padding-left: 4em;
+    width: 80%;
+    margin: 6px auto;
+    line-height: 1.8em;
+}
+.UserDialog  form >.row.actions button{
+    color:#fff;
+    width: 100%;
+    margin: 0 auto;
+    line-height: 1.8em;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    background: rgba(175, 47, 47, 0.15);
+}
+.UserDialog  form >.row.actions button:focus{
+    outline: none;
+}
+.UserDialog  form .row input{
+    display: block;
+    width: 80%;
+    margin: 0 auto;
+    line-height: 1.8em;
+    padding-left:0.4em ;
+    border-left: 0;
+    border-top: 0;
+    border-right: 0;
+}
+.UserDialog  form .row input:focus{
+    border-bottom-color:rgba(175, 47, 47, 0.15);
+}
+.UserDialog footer{
+    display: block;
+    width: 72%;
+    margin: 0 auto;
+    margin-bottom: 16px;
+}
+.UserDialog footer button{
+    color: rgba(175, 47, 47, 0.15);
+    background: #fff;
+    border:none;
+}
+.UserDialog footer button:focus{
+    outline: none;
+}
+.UserDialog footer button:first-child{
+    float: left;
+}
+.UserDialog footer button:last-child{
+    float: right;
 }

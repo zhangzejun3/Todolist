@@ -12,3 +12,8 @@ ul,ol,dl{
 a{
     color:inherit;
 }
+.clearfix::after{
+    content: '';
+    display: block;
+    clear: both;
+}
