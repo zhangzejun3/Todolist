@@ -43,6 +43,15 @@
     border-radius: 4px;
     background: rgba(175, 47, 47, 0.15);
 }
+.UserDialog  form >.row.actions .forgetPasswordWrapper{
+    width: 100%;
+}
+.UserDialog  form >.row.actions a{
+    margin: 6px 0 ;
+    float: right;
+    color: #ddd;
+    text-decoration: none;
+}
 .UserDialog  form >.row.actions button:focus{
     outline: none;
 }
@@ -78,4 +87,9 @@
 }
 .UserDialog footer button:last-child{
     float: right;
+}
+.forgetPassword h3{
+    margin: 16px;
+    text-align: center;
+    color: rgba(175, 47, 47, 0.15);
 }
