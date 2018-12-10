@@ -11,7 +11,7 @@ class App extends Component {
     constructor() {
         super()
         this.state = {
-            user: getCurrentUser || {},
+            user: getCurrentUser,
             newTodo: '',
             todoList: []
         }

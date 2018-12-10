@@ -13,11 +13,11 @@ export function signUp(email,username,password,successFn,errorFn){
   // 新建 AVUser 对象实例
   var user = new AV.User();
   // 设置用户名
-  user.setUsername(username||'');
+  user.setUsername(username||'emptyUsername');
   // 设置密码
-  user.setPassword(password||'');
+  user.setPassword(password||'emptyPassword');
   // 设置邮箱
-  user.setEmail(email||'');
+  user.setEmail(email);
   user.signUp().then(function (loggedInUser) {
     let user = getUserFormAVUser(loggedInUser)
     successFn.call(null,user)
@@ -43,12 +43,12 @@ export function getCurrentUser(){
   if(user){
     return getUserFormAVUser(user)
   }else{
-    return null
+    return {}
   }
 }
 
 export function sendPasswordResetEmail(email,successFn,errorFn){
-  AV.User.requestPasswordReset(email).then(function (success) {
+  AV.User.requestPasswordReset(email).then(function () {
     alert('发送成功')
     successFn.call()
   }, function (error) {
