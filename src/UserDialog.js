@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import './UserDialog.css'
+import SignUpForm from './SignUpForm'
 import {signUp,signIn,sendPasswordResetEmail} from './leanCloud'
 
 class UserDialog extends Component {
@@ -27,22 +28,22 @@ class UserDialog extends Component {
             this.props.onSignIn.call(null,user)
         }
         let error = (error)=>{
-            switch(error.code){
+            switch (error.code) {
                 case 210:
-                alert('用户名与密码不匹配')
-                break
+                    alert('用户名与密码不匹配')
+                    break
                 case 201:
-                alert('密码为空')
-                break
+                    alert('密码为空')
+                    break
                 case 200:
-                alert('用户名为空')
-                break
+                    alert('用户名为空')
+                    break
                 case 211:
-                alert('找不到用户')
-                break
+                    alert('请输入正确的用户名和密码')
+                    break
                 default:
-                alert(error)
-                break
+                    alert(error)
+                    break
             }
         }
         signIn(username,password,success,error)
@@ -54,7 +55,11 @@ class UserDialog extends Component {
             this.props.onSignUp.call(null,user)
         }
         let error = (error)=>{
-            console.log(error.code)
+            if(username===''){
+                alert('用户名为空')
+            }else if(password===''){
+                alert('密码为空')
+            }
             switch(error.code){
                 case 202:
                 alert('用户名已被占用')
@@ -78,26 +83,6 @@ class UserDialog extends Component {
         this.setState(stateCopy)
     }
     render() {
-        let signUpForm = (<form className='signUp' onSubmit={this.signUp.bind(this)}>
-            <div className="row">
-                <input placeholder='邮箱' type="text" 
-                value={this.state.formData.email}
-                onChange={this.changeFormData.bind(this,'email')}/>
-            </div>
-            <div className="row">
-                <input placeholder='用户名' type="text" 
-                value={this.state.formData.username}
-                onChange={this.changeFormData.bind(this,'username')}/>
-            </div>
-            <div className="row">
-                <input  placeholder='密码' type="password" 
-                value={this.state.formData.password}
-                onChange={this.changeFormData.bind(this,'password')}/>
-            </div>
-            <div className="row actions">
-                <button type='submit'>注册</button>
-            </div>
-        </form>)
 
         let signInForm = (<form className='signIn' onSubmit={this.signIn.bind(this)}>
             <div className="row">
@@ -120,7 +105,10 @@ class UserDialog extends Component {
             <div className="signInOrSignUp">
                 <h1>Welcome</h1>
                 <div className="formWrapper">
-                    {this.state.selected === 'signIn' ? signInForm : signUpForm}
+                    {this.state.selected === 'signIn' ? signInForm 
+                    : <SignUpForm formData={this.state.formData}
+                    onSubmit={this.signUp.bind(this)}
+                    onChange={this.changeFormData.bind(this)}/>}
                 </div>
                 <footer className='clearfix'>
                     <button value='signUp'
@@ -165,7 +153,8 @@ class UserDialog extends Component {
         e.preventDefault()
         sendPasswordResetEmail(this.state.formData.email)
     }
-    returnToSignIn(){
+    returnToSignIn(e){
+        e.preventDefault()
         let stateCopy = JSON.parse(JSON.stringify(this.state))
         stateCopy.selectedTab = 'signInOrSignUp'
         this.setState(stateCopy)

@@ -53,16 +53,19 @@ export function sendPasswordResetEmail(email,successFn,errorFn){
     successFn.call()
   }, function (error) {
     console.log(error.code)
-    switch(error.code){
+    switch (error.code) {
       case 1:
-      alert('请不要往同一个邮件地址发送太多邮件')
-      break
+        alert('请不要往同一个邮件地址发送太多邮件')
+        break
       case 204:
-      alert('没有提供电子邮箱地址')
-      break
-      case 204:
-      alert('找不到电子邮箱地址对应的用户')
-      break
+        alert('没有提供电子邮箱地址')
+        break
+      case 205:
+        alert('找不到电子邮箱地址对应的用户')
+        break
+      default:
+        alert(error)
+        break
     }
     errorFn.call(null,error)
   });
