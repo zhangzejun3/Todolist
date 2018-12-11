@@ -11,7 +11,8 @@
 }
 .UserDialog{
     border-radius: 4px;
-    min-width: 20em;
+    width: 100%;
+    max-width: 20em;
     background: white;
     box-shadow: 0 0 1em hsla(0, 0%, 0%, 0.35);
 }
@@ -87,9 +88,4 @@
 }
 .UserDialog footer button:last-child{
     float: right;
-}
-.forgetPassword h3{
-    margin: 16px;
-    text-align: center;
-    color: rgba(175, 47, 47, 0.15);
 }

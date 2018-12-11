@@ -5,7 +5,10 @@ import './reset.css'
 import TodoInput from './TodoInput'
 import TodoItem from './TodoItem'
 import UserDialog from './UserDialog'
-import { getCurrentUser, signOut } from './leanCloud';
+import { getCurrentUser, signOut,TodoModel } from './leanCloud';
+import AV from './leanCloud'
+
+
 
 class App extends Component {
     constructor() {
@@ -78,7 +81,6 @@ class App extends Component {
             newTodo: '',
             todoList: todoList
         })
-        console.log(todoList[todoList.length - 1].title)
     }
     changeTitle(event) {
         this.setState({

@@ -4,7 +4,7 @@ export default class ForgetPasswordForm extends Component{
     render(){
         return(
             <div className="forgetPassword">
-                <h3>重置密码</h3>
+                <h1>重置密码</h1>
                 <form className="forgetPasswordForm" onSubmit={this.props.onSubmit.bind(this)}>
                     <div className="row">
                         <input type="text" value={this.props.formData.email}
