@@ -1,7 +1,6 @@
 
 .App{
     border: 1px solid #ddd;
-    color: #333;
     background: #fff;
     margin: 2em;
     padding: 0 1em;
@@ -12,9 +11,8 @@
     position: relative;
 }
 .App h1{
-    /* min-width: 10em; */
     text-align: center;
-    color: rgba(175, 47, 47, 0.15);
+    color: #e7c0c0;
 }
 .App h1 button{
     font-size: 16px;
@@ -66,10 +64,15 @@
     word-break: break-all;
 }
 .itemWrapper button{
+    display: none;
     float: right;
     background:#fff;
     color: #ddd;
     border: 0;
+}
+.itemWrapper:hover button{
+    display: inline-block;
+    color: #e7c0c0;
 }
 .itemWrapper button:focus{
     outline: none;
