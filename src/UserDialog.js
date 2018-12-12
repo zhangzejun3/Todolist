@@ -27,21 +27,27 @@ class UserDialog extends Component {
                 case 210:
                     alert('用户名与密码不匹配')
                     break
-                case 201:
-                    alert('密码为空')
-                    break
-                case 200:
-                    alert('用户名为空')
-                    break
                 case 211:
-                    alert('请输入正确的用户名和密码')
+                    alert('找不到用户')
                     break
                 default:
                     alert(error)
                     break
             }
         }
-        signIn(username,password,success,error)
+        let usernameLength = username.trim().length
+        let passwordLength = password.trim().length
+        if (username === '') {
+            alert('用户名为空')
+        } else if (password === '') {
+            alert('密码为空')
+        } else if (usernameLength <= 3) {
+            alert('用户名必须大于三个字符')
+        } else if (passwordLength < 6) {
+            alert('密码必须不小于6个字符')
+        } else {
+            signIn(username, password, success, error)
+        }
     }
     signUp(e){
         e.preventDefault()
@@ -67,7 +73,9 @@ class UserDialog extends Component {
         }
         let usernameLength = username.trim().length
         let passwordLength = password.trim().length
-        if(username===''){
+        if(email===''){
+            alert('邮箱为空')
+        }else if(username===''){
             alert('用户名为空')
         }else if(password===''){
             alert('密码为空')
@@ -109,7 +117,15 @@ class UserDialog extends Component {
     }
     resetPassword(e){
         e.preventDefault()
-        sendPasswordResetEmail(this.state.formData.email)
+        let email = this.state.formData.email
+        let reg = new RegExp(/@/)
+        if(email===''){
+            alert('邮箱为空')            
+        }else if(email.match(reg)){
+        sendPasswordResetEmail(email)
+        }else{
+            alert('邮箱地址无效')
+        }
     }
     returnToSignIn(e){
         e.preventDefault()
