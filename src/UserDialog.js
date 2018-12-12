@@ -50,11 +50,6 @@ class UserDialog extends Component {
             this.props.onSignUp.call(null,user)
         }
         let error = (error)=>{
-            if(username===''){
-                alert('用户名为空')
-            }else if(password===''){
-                alert('密码为空')
-            }
             switch(error.code){
                 case 202:
                 alert('用户名已被占用')
@@ -70,7 +65,19 @@ class UserDialog extends Component {
                 break
             }
         }
-        signUp(email,username,password,success,error)
+        let usernameLength = username.trim().length
+        let passwordLength = password.trim().length
+        if(username===''){
+            alert('用户名为空')
+        }else if(password===''){
+            alert('密码为空')
+        }else if (usernameLength<=3){
+            alert('用户名必须大于三个字符')
+        }else if(passwordLength<6){
+            alert('密码必须不小于6个字符')
+        }else{
+            signUp(email, username, password, success, error)
+        }
     }
     changeFormData(key,e){
         let stateCopy = JSON.parse(JSON.stringify(this.state))
