@@ -6,17 +6,22 @@ import TodoInput from './TodoInput'
 import TodoItem from './TodoItem'
 import UserDialog from './UserDialog'
 import { getCurrentUser, signOut,TodoModel } from './leanCloud';
-import AV from './leanCloud'
-
-
 
 class App extends Component {
     constructor() {
         super()
         this.state = {
-            user: getCurrentUser,
+            user: getCurrentUser()||{},
             newTodo: '',
             todoList: []
+        }
+        let user = getCurrentUser()
+        if (user) {
+            TodoModel.getByUser(user, (todos) => {
+                let stateCopy = JSON.parse(JSON.stringify(this.state))
+                stateCopy.todoList = todos
+                this.setState(stateCopy)
+            })
         }
     }
     render() {
@@ -29,7 +34,7 @@ class App extends Component {
             })
         return (
             <div className='App'>
-                <h1>{this.state.user.username || '我'}的Todos
+                <h1>Todos
                 {this.state.user.id ?
                         <button onClick={this.onSignOut.bind(this)}>登出</button> : null}</h1>
                 <div className="inputWrapper">
@@ -51,9 +56,17 @@ class App extends Component {
         // this.state.user = user
         // this.setState(this.state)
         //直接修改会报错
-        let stateCopy = JSON.parse(JSON.stringify(this.state))
-        stateCopy.user = user
-        this.setState(stateCopy)
+        // let stateCopy = JSON.parse(JSON.stringify(this.state))
+        // stateCopy.user = user//没有刷新todoList
+        // this.setState(stateCopy)
+        if (user) {
+            TodoModel.getByUser(user, (todos) => {
+                let stateCopy = JSON.parse(JSON.stringify(this.state))
+                stateCopy.todoList = todos
+                stateCopy.user = user
+                this.setState(stateCopy)
+            })
+        }
     }
     onSignOut() {
         signOut()
@@ -62,24 +75,36 @@ class App extends Component {
         this.setState(stateCopy)
     }
     delete(event, todo) {
-        todo.deleted = true
-        this.setState(this.state)
+        TodoModel.destory(todo.id, () => {
+            todo.deleted = true
+            this.setState(this.state)
+        })
     }
     toggle(e, todo) {
+        let oldStatus = todo.status
         todo.status = todo.status === 'completed' ? '' : 'completed'
-        this.setState(this.state)
+        TodoModel.update(todo,()=>{
+            this.setState(this.state)
+        },(error)=>{
+            todo.status = oldStatus
+            this.setState(this.state)
+        })
     }
     addTodo(event) {
-        let todoList = this.state.todoList
-        todoList.push({
-            id: idMaker(),
-            title: event.target.value,
-            status: null,
-            deleted: false
-        })
-        this.setState({
-            newTodo: '',
-            todoList: todoList
+        let newTodo = {
+            title : event.target.value,
+            status:'',
+            deleted:false
+        }
+        TodoModel.create(newTodo,(id)=>{
+            newTodo.id = id
+            this.state.todoList.push(newTodo)
+            this.setState({
+                newTodo:'',
+                todoList:this.state.todoList
+            })
+        },(error) => {
+            console.log(error)
         })
     }
     changeTitle(event) {
@@ -88,12 +113,6 @@ class App extends Component {
             todoList: this.state.todoList
         })
     }
-}
-
-let id = 0
-function idMaker() {
-    id += 1
-    return id
 }
 
 export default App

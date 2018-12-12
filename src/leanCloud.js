@@ -9,6 +9,76 @@ AV.init({
 });
 
 export default AV
+
+export const TodoModel = {
+  getByUser(user, successFn, errorFn) {
+    let query = new AV.Query('Todo');
+    query.equalTo('deleted',false)
+    query.find().then(function (response) {
+      let array = response.map((item)=>{
+        return {
+          id:item.id,
+          ...item.attributes
+        }
+      })
+      successFn.call(null,array)
+    },(error)=>{
+      errorFn&&errorFn.call(null,error)
+    })
+  },
+  create({ status, title, deleted }, successFn, errorFn) {
+    let Todo = AV.Object.extend('Todo')
+    // 新建对象
+    let todo = new Todo();
+    // 设置名称
+    todo.set('title', title);
+    // 设置优先级
+    todo.set('status', status);
+    todo.set('deleted', deleted);
+
+    // 新建一个 ACL 实例
+    let acl = new AV.ACL();
+    acl.setPublicReadAccess(false);
+    acl.setWriteAccess(AV.User.current(), true);
+    acl.setReadAccess(AV.User.current(), true);
+
+    // 将 ACL 实例赋予 Todo 对象
+    todo.setACL(acl);
+
+    todo.save().then(function (response) {
+      successFn.call(null, response.id)
+    }, function (error) {
+      errorFn && errorFn.call(null, error)
+    });
+  },
+  update({ id, title, status, deleted }, successFn, errorFn) {
+    // 第一个参数是 className，第二个参数是 objectId
+    let todo = AV.Object.createWithoutData('Todo', id);
+    // 修改属性
+    title!==undefined&&todo.set('title', title)
+    status!==undefined&&todo.set('status', status);
+    deleted!==undefined&&todo.set('deleted', deleted);
+    // 保存到云端
+    todo.save().then((response)=>{
+      successFn&&successFn.call(null)
+    },(error)=>{
+      errorFn&&errorFn.call(null,error)
+    });
+
+  },
+  destory(todoId,successFn,errorFn){
+    // let todo = AV.Object.createWithoutData('Todo', todoId);
+    // todo.destroy().then(function (success) {
+    //   successFn && successFn.call(null)
+    //   // 删除成功
+    // }, function (error) {
+    //   // 删除失败
+    //   errorFn && errorFn.call(null, error)
+    // });
+    TodoModel.update({id:todoId,deleted:true},successFn,errorFn)
+  }
+}
+
 export function signUp(email,username,password,successFn,errorFn){
   // 新建 AVUser 对象实例
   var user = new AV.User();
