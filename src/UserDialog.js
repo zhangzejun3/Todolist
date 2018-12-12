@@ -3,6 +3,7 @@ import './UserDialog.css'
 import SignInOrSignUp from './SignInOrSignUp'
 import ForgetPasswordForm from './ForgetPasswordForm'
 import {signUp,signIn,sendPasswordResetEmail} from './leanCloud'
+import JSONParseAndStringify from './JSONParseAndStringify'
 
 class UserDialog extends Component {
     constructor() {
@@ -88,7 +89,7 @@ class UserDialog extends Component {
         }
     }
     changeFormData(key,e){
-        let stateCopy = JSON.parse(JSON.stringify(this.state))
+        let stateCopy = JSONParseAndStringify(this.state)
         stateCopy.formData[key] = e.target.value
         this.setState(stateCopy)
     }
@@ -111,7 +112,7 @@ class UserDialog extends Component {
         )
     }
     showForgetPassword(){
-        let stateCopy = JSON.parse(JSON.stringify(this.state))
+        let stateCopy = JSONParseAndStringify(this.state)
         stateCopy.selectedTab = 'forgetPassword'
         this.setState(stateCopy)
     }
@@ -129,7 +130,7 @@ class UserDialog extends Component {
     }
     returnToSignIn(e){
         e.preventDefault()
-        let stateCopy = JSON.parse(JSON.stringify(this.state))
+        let stateCopy = JSONParseAndStringify(this.state)
         stateCopy.selectedTab = 'signInOrSignUp'
         this.setState(stateCopy)
     }

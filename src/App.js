@@ -6,6 +6,7 @@ import TodoInput from './TodoInput'
 import TodoItem from './TodoItem'
 import UserDialog from './UserDialog'
 import { getCurrentUser, signOut,TodoModel } from './leanCloud';
+import JSONParseAndStringify from './JSONParseAndStringify'
 
 class App extends Component {
     constructor() {
@@ -18,7 +19,7 @@ class App extends Component {
         let user = getCurrentUser()
         if (user) {
             TodoModel.getByUser(user, (todos) => {
-                let stateCopy = JSON.parse(JSON.stringify(this.state))
+                let stateCopy = JSONParseAndStringify(this.state)
                 stateCopy.todoList = todos
                 this.setState(stateCopy)
             })
@@ -56,12 +57,12 @@ class App extends Component {
         // this.state.user = user
         // this.setState(this.state)
         //直接修改会报错
-        // let stateCopy = JSON.parse(JSON.stringify(this.state))
+        // let stateCopy = JSONParseAndStringify(this.state)
         // stateCopy.user = user//没有刷新todoList
         // this.setState(stateCopy)
         if (user) {
             TodoModel.getByUser(user, (todos) => {
-                let stateCopy = JSON.parse(JSON.stringify(this.state))
+                let stateCopy = JSONParseAndStringify(this.state)
                 stateCopy.todoList = todos
                 stateCopy.user = user
                 this.setState(stateCopy)
