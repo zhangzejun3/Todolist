@@ -34,7 +34,7 @@
     line-height: 1.8em;
     border: 1px solid transparent;
     border-radius: 4px;
-    background: #E7C0C0;
+    background: #3F80E1;
 }
 .UserDialog  form >.row.actions .forgetPasswordWrapper{
     width: 100%;
@@ -42,7 +42,7 @@
 .UserDialog  form >.row.actions a{
     margin: 6px 0 ;
     float: right;
-    color: #ddd;
+    color: #3F80E1;
     text-decoration: none;
 }
 .UserDialog  form >.row.actions button:focus{
@@ -57,9 +57,10 @@
     border-left: 0;
     border-top: 0;
     border-right: 0;
+    border-bottom:2px solid #ccc; 
 }
 .UserDialog  form .row input:focus{
-    border-bottom-color:#E7C0C0;
+    border-bottom-color:#3F80E1;
 }
 .UserDialog footer{
     display: block;
@@ -68,7 +69,7 @@
     margin-bottom: 16px;
 }
 .UserDialog footer button{
-    color: #E7C0C0;
+    color: #3F80E1;
     background: #fff;
     border:none;
 }

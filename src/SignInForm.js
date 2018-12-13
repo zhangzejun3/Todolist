@@ -14,8 +14,7 @@ export default function (props){
         <div className="row actions">
             <button type='submit'>登录</button>
             <div className="forgetPasswordWrapper clearfix">
-            <a href="#" onClick={props.onClick.bind(this)}>忘记密码</a>
-            </div>
+            <a href="#" onClick={props.onClick.bind(this)}>忘记密码</a>            </div>
         </div>
     </form>
     )

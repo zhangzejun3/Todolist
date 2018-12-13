@@ -1,6 +1,6 @@
 
 .App{
-    border: 1px solid #ddd;
+    border: 1px solid #ccc;
     background: #fff;
     margin: 2em;
     padding: 0 1em;
@@ -12,14 +12,14 @@
 }
 .App h1{
     text-align: center;
-    color: #e7c0c0;
+    color: #3F80E1;
 }
 .App h1 button{
     font-size: 16px;
     position: absolute;
     right: 1em;
     top: 1em;
-    color: #ddd;
+    color: #3F80E1;
     background: #fff;
     border: 1px solid white;
 }
@@ -31,13 +31,13 @@
     margin-right: 10%;
     padding: 10px;
     border: 1px solid white;
-    box-shadow: #ddd;
+    box-shadow: #ccc;
 }
 .App input:focus{
     outline: none;
 }
 .App input::placeholder{
-    color: #ddd;
+    color: #ccc;
 }
 .itemWrapper{
     width: 80%;
@@ -60,19 +60,18 @@
     width: 60%;
     line-height:22px;
     float: left;
-    color: #666;
     word-break: break-all;
 }
 .itemWrapper button{
     display: none;
     float: right;
     background:#fff;
-    color: #ddd;
+    color: #ccc;
     border: 0;
 }
 .itemWrapper:hover button{
     display: inline-block;
-    color: #e7c0c0;
+    color: #3F80E1;
 }
 .itemWrapper button:focus{
     outline: none;
