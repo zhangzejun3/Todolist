@@ -3,7 +3,6 @@
     border: 1px solid #ccc;
     background: #fff;
     margin: 2em;
-    padding: 0 1em;
     width: 100%;
     max-width: 32em;
     min-height: 20em;
@@ -11,17 +10,20 @@
     position: relative;
 }
 .App h1{
+    margin: 0 0 16px;
+    padding: 0.4em 0;
     text-align: center;
-    color: #3F80E1;
+    color: #fff;
+    background: #3F80E1;
 }
 .App h1 button{
     font-size: 16px;
     position: absolute;
-    right: 1em;
-    top: 1em;
-    color: #3F80E1;
-    background: #fff;
-    border: 1px solid white;
+    right: .4em;
+    top: .4em;
+    color:#fff ;
+    background: #3F80E1;
+    border: none;
 }
 .App button:focus{
     outline: none;
